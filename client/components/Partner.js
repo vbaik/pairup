@@ -80,20 +80,24 @@ class Partner extends React.Component {
 
   render() {
     const potentialPartners = this.props.potentialPartners;
-    return (
-      <div>
-        <h3>Your awesome matching partner(s): </h3>
+    if (this.props.coderType !== "") {
+      return (
         <div>
-          {potentialPartners.map((partner) => (
-            <div key={partner.id}>
-              <h4>{partner.username}</h4>
-              <ul>{partner.level}</ul>
-              <ul>Compatibility {this.calculateCompatibility(partner)}</ul>
-            </div>
-          ))}
+          <h3>Your awesome matching partner(s): </h3>
+          <div>
+            {potentialPartners.map((partner) => (
+              <div key={partner.id}>
+                <h4>{partner.username}</h4>
+                <ul>{partner.level}</ul>
+                <ul>Compatibility {this.calculateCompatibility(partner)}</ul>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <div></div>;
+    }
   }
 }
 
