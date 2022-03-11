@@ -18,7 +18,6 @@ class Home extends React.Component {
 
   render() {
     const { username } = this.props;
-    console.log(this.state.isDriver);
     return (
       <div>
         <h3>Welcome, {username}</h3>

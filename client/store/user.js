@@ -2,6 +2,7 @@ import axios from "axios";
 
 // const GET_LOGGEDIN_USER = "GET_LOGGEDIN_USER";
 const GET_ALL_USERS = "GET_ALL_USERS";
+const GET_PARTNERS = "GET_PARTNERS";
 
 // const getLoggedInUser = (user) => {
 //   return {
@@ -17,6 +18,13 @@ const getAllUsers = (users) => {
   };
 };
 
+// const getPartners = (partners) => {
+//   return {
+//     type: GET_ALL_USERS,
+//     partners,
+//   };
+// };
+
 // export const fetchLoggedInUserThunk = (userId) => {
 //   return async (dispatch) => {
 //     try {
@@ -31,20 +39,41 @@ const getAllUsers = (users) => {
 export const fetchAllUsersThunk = () => {
   return async (dispatch) => {
     try {
-      const { data: users } = await axios.get("/api/users");
+      const token = window.localStorage.getItem("token");
+      const { data: users } = await axios.get("/api/users", {
+        headers: {
+          authorization: token,
+        },
+      });
+      console.log("data ??????? ", users);
       dispatch(getAllUsers(users));
     } catch (err) {
       console.log(err);
     }
   };
 };
+// export const fetchPotentialPartnersThunk = () => {
+//   return async (dispatch) => {
+//     try {
+//       const token = window.localStorage.getItem("token");
+//       const { data: partners } = await axios.get("/api/users/partners", {
+//         headers: {
+//           authorization: token,
+//         },
+//       });
+//       dispatch(getPartners(partners));
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
 
 const initialState = [];
 
 export default function usersReducer(state = initialState, action) {
   switch (action.type) {
-    // case GET_LOGGEDIN_USER:
-    //   return action.user;
+    //   case GET_PARTNERS:
+    // return action.partners;
     case GET_ALL_USERS:
       return action.users;
     default:

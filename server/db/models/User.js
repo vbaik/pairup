@@ -66,7 +66,7 @@ User.findByToken = async function (token) {
     }
     return user;
   } catch (ex) {
-    const error = Error("bad token");
+    const error = Error("BAD TOKEN");
     error.status = 401;
     throw error;
   }

@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 
 export default class MainPage extends React.Component {
   render() {
-    console.log(React.version);
     return (
       <div>
         <h1>Find Your Perfect Pair-programming Partner</h1>
