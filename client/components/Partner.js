@@ -5,13 +5,83 @@ import { fetchAllUsersThunk, fetchPotentialPartnersThunk } from "../store/user";
 class Partner extends React.Component {
   constructor() {
     super();
+    this.calculateCompatibility = this.calculateCompatibility.bind(this);
   }
   componentDidMount() {
     this.props.getAllPotentialPartners();
   }
 
+  calculateCompatibility(partner) {
+    if (this.props.isDriver) {
+      if (this.props.loggedInUserInfo.level === "Beginner") {
+        switch (partner.level) {
+          case "Beginner":
+            return 0.5;
+          case "Intermediate":
+            return 0.99;
+          case "Experienced":
+            return 0.8;
+        }
+      }
+      if (this.props.loggedInUserInfo.level === "Intermediate") {
+        switch (partner.level) {
+          case "Beginner":
+            return 0.2;
+          case "Intermediate":
+            return 0.8;
+          case "Experienced":
+            return 0.99;
+        }
+      }
+      if (this.props.loggedInUserInfo.level === "Experienced") {
+        switch (partner.level) {
+          case "Beginner":
+            return 0.1;
+          case "Intermediate":
+            return 0.5;
+          case "Experienced":
+            return 0.99;
+        }
+      }
+    } else {
+      if (this.props.loggedInUserInfo.level === "Beginner") {
+        switch (partner.level) {
+          case "Beginner":
+            return 0.5;
+          case "Intermediate":
+            return 0.2;
+          case "Experienced":
+            return 0.1;
+        }
+      }
+      if (this.props.loggedInUserInfo.level === "Intermediate") {
+        switch (partner.level) {
+          case "Beginner":
+            return 0.99;
+          case "Intermediate":
+            return 0.8;
+          case "Experienced":
+            return 0.5;
+        }
+      }
+      if (this.props.loggedInUserInfo.level === "Experienced") {
+        switch (partner.level) {
+          case "Beginner":
+            return 0.8;
+          case "Intermediate":
+            return 0.99;
+          case "Experienced":
+            return 0.99;
+        }
+      }
+    }
+  }
+
   render() {
-    console.log("this is props for Partners Comp >>> ", this.props);
+    console.log(
+      "this.props.loggedInUserInfo >>> ",
+      this.props.loggedInUserInfo
+    );
     const potentialPartners = this.props.potentialPartners;
     return (
       <div>
@@ -20,6 +90,8 @@ class Partner extends React.Component {
           {potentialPartners.map((partner) => (
             <div key={partner.id}>
               <h4>{partner.username}</h4>
+              <ul>{partner.level}</ul>
+              <ul>Compatibility {this.calculateCompatibility(partner)}</ul>
             </div>
           ))}
         </div>

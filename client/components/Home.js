@@ -6,7 +6,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDriver: true,
+      isDriver: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -28,7 +28,7 @@ class Home extends React.Component {
           onChange={this.handleChange}
           value={this.state.isDriver}
         >
-          <option value={true}>Select One</option>
+          <option value={""}>Select One</option>
           <option value={true}>Drive</option>
           <option value={false}>Navigate</option>
         </select>
