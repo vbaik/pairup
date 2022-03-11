@@ -5,6 +5,14 @@ const {
   /* store functions that will act as middleware between
    our request and our response. */
   
+
+
+
+
+
+
+
+
   const requireToken = async (req, res, next) => {
     try {
       const token = req.headers.authorization;
@@ -16,6 +24,8 @@ const {
       next(err);
     }
   };
+
+  
   
   const isAdmin = async (req, res, next) => {
     if (!req.user.isAdmin) {

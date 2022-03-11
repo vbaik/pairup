@@ -40,13 +40,15 @@ export const fetchAllUsersThunk = () => {
   return async (dispatch) => {
     try {
       const token = window.localStorage.getItem("token");
-      const { data: users } = await axios.get("/api/users", {
-        headers: {
-          authorization: token,
-        },
-      });
-      console.log("data ??????? ", users);
-      dispatch(getAllUsers(users));
+      if (token) {
+        const { data } = await axios.get("/api/users", {
+          headers: {
+            authorization: token,
+          },
+        });
+        console.log("data ??????? ", data);
+        dispatch(getAllUsers(data));
+      }
     } catch (err) {
       console.log(err);
     }

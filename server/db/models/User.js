@@ -62,7 +62,7 @@ User.findByToken = async function (token) {
     const { id } = await jwt.verify(token, process.env.JWT);
     const user = User.findByPk(id);
     if (!user) {
-      throw "nooo";
+      throw "There is no such user in here.";
     }
     return user;
   } catch (ex) {

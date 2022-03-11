@@ -6,8 +6,9 @@ const { requireToken } = require("./gateKeepingMiddleware");
 
 module.exports = router;
 
-router.get("/", async (req, res, next) => {
+router.get("/", requireToken, async (req, res, next) => {
   try {
+    console.log((token = req.headers.authorization));
     const users = await User.findAll({
       attributes: ["id", "username", "level"],
       include: Mbti,
