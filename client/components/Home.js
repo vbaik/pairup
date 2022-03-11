@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Partner from "./Partner";
 
 class Home extends React.Component {
   constructor(props) {
@@ -32,6 +33,10 @@ class Home extends React.Component {
           <option value={true}>Drive</option>
           <option value={false}>Navigate</option>
         </select>
+
+        <div>
+          <Partner isDriver={this.state.isDriver} />
+        </div>
       </div>
     );
   }
