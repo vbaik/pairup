@@ -28,19 +28,23 @@ router.get("/", requireToken, async (req, res, next) => {
 //   }
 // });
 
-//find partenr
-// router.get("/partners", async (req, res, next) => {
-//   try {
-//     // console.log("req.user >>>>>>>> ", req.user.toJSON());
-//     // const userMbtiId = req.user.mbtiId;
-//     const partners = await User.findAll({
-//       // attributes: ["id", "username", "level"],
-//       where: {
-//         mbtiid: 1,
-//       },
-//     });
-//     res.send(partners);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+// find partners
+router.get("/partners", requireToken, async (req, res, next) => {
+  try {
+    // console.log("req.user >>>>>>>> ", req.user.toJSON());
+
+    const matchedMbti = await Mbti.findByPk(req.user.mbtiId);
+
+    const partners = await User.findAll({
+      // attributes: ["id", "username", "level"],
+      where: {
+        mbtiId: matchedMbti.fk_bestMatch,
+      },
+    });
+    console.log("matched partners >>>>>>", partners);
+
+    res.send(partners);
+  } catch (err) {
+    next(err);
+  }
+});
