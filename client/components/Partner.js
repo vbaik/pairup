@@ -12,7 +12,8 @@ class Partner extends React.Component {
   }
 
   calculateCompatibility(partner) {
-    if (this.props.isDriver) {
+    // this.setState({ isDriver: this.props.isDriver });
+    if (this.props.coderType === "Driver") {
       if (this.props.loggedInUserInfo.level === "Beginner") {
         switch (partner.level) {
           case "Beginner":
@@ -43,7 +44,7 @@ class Partner extends React.Component {
             return 0.99;
         }
       }
-    } else {
+    } else if (this.props.coderType === "Navigator") {
       if (this.props.loggedInUserInfo.level === "Beginner") {
         switch (partner.level) {
           case "Beginner":
@@ -78,10 +79,6 @@ class Partner extends React.Component {
   }
 
   render() {
-    console.log(
-      "this.props.loggedInUserInfo >>> ",
-      this.props.loggedInUserInfo
-    );
     const potentialPartners = this.props.potentialPartners;
     return (
       <div>

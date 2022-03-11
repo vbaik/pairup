@@ -6,11 +6,12 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDriver: "",
+      coderType: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
+    console.log("state changed");
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -24,17 +25,17 @@ class Home extends React.Component {
         <p>Would you like to drive or navigate?</p>
         <select
           className="driver-dropdown"
-          name="isDriver"
+          name="coderType"
           onChange={this.handleChange}
-          value={this.state.isDriver}
+          value={this.state.coderType}
         >
-          <option value={""}>Select One</option>
-          <option value={true}>Drive</option>
-          <option value={false}>Navigate</option>
+          <option value="">Select One</option>
+          <option value="Driver">Drive</option>
+          <option value="Navigator">Navigate</option>
         </select>
 
         <div>
-          <Partner isDriver={this.state.isDriver} />
+          <Partner coderType={this.state.coderType} />
         </div>
       </div>
     );
