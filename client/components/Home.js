@@ -2,6 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import Partner from "./Partner";
 
+//+++ style +++
+import {
+  Typography,
+  Toolbar,
+  Box,
+  Menu,
+  MenuItem,
+  Button,
+} from "@mui/material";
+
+import theme from "./style/Theme";
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -19,9 +31,13 @@ class Home extends React.Component {
   render() {
     const { username } = this.props;
     return (
-      <div>
-        <h3>Welcome, {username}</h3>
-        <p>Would you like to drive or navigate?</p>
+      <Box>
+        <Typography color="primary" variant="h4">
+          Welcome, {username}.
+        </Typography>
+        <Typography variant="h6">
+          Would you like to drive or navigate?
+        </Typography>
         <select
           className="driver-dropdown"
           name="coderType"
@@ -36,7 +52,7 @@ class Home extends React.Component {
         <div>
           <Partner coderType={this.state.coderType} />
         </div>
-      </div>
+      </Box>
     );
   }
 }
