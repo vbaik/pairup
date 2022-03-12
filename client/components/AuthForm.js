@@ -60,7 +60,7 @@ const AuthForm = (props) => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {displayName}
           </Typography>
           <Box
             name={name}
@@ -148,11 +148,11 @@ const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
       evt.preventDefault();
-      const data = new FormData(event.currentTarget);
-      console.log({
-        email: data.get("email"),
-        password: data.get("password"),
-      });
+      // const data = new FormData(evt.currentTarget);
+      // console.log({
+      //   email: data.get("email"),
+      //   password: data.get("password"),
+      // });
       const formName = evt.target.name;
       const username = evt.target.username.value;
       const password = evt.target.password.value;
