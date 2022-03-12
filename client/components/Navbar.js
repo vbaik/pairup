@@ -33,20 +33,15 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-
           <Link to="/">
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              PairUp
-            </Typography>
+            <Box
+              component="img"
+              sx={{
+                height: 64,
+              }}
+              alt="PairUp"
+              src="/Logo.png"
+            />
           </Link>
 
           {isLoggedIn ? (
@@ -54,7 +49,7 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
               {/* The navbar will show these links after you log in */}
 
               <Link to="/home">
-                <Button color="inherit">Login</Button>
+                <Button color="inherit">Find Your Partner</Button>
               </Link>
               <a href="#" onClick={handleClick}>
                 <Button color="inherit">Logout</Button>
@@ -72,14 +67,14 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
             </div>
           )}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Edit Profile">
               <Link to="/users/profile">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Remy Sharp" src={userImg} />
                 </IconButton>
               </Link>
             </Tooltip>
-            <Menu
+            {/* <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
               anchorEl={anchorElUser}
@@ -100,7 +95,7 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu> */}
           </Box>
         </Toolbar>
       </AppBar>
