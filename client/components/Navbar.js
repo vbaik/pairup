@@ -31,16 +31,21 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        sx={{ background: "none", fontFamily: "Nunito" }}
+        sx={{
+          background: "none",
+          fontFamily: "Nunito",
+          // display: "flex",
+          // justifyContent: "center",
+        }}
         elevation={0}
       >
-        <Toolbar>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Link to="/">
             <Box
               component="img"
               sx={{
                 height: 64,
-                flexGrow: 1,
+                flexGrow: 5,
               }}
               alt="PairUp"
               src="/Logo.png"
@@ -57,6 +62,13 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
               <a href="#" onClick={handleClick}>
                 <Button>Logout</Button>
               </a>
+              <Tooltip title="Edit Profile">
+                <Link to="/users/profile">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt="Remy Sharp" src={userImg} />
+                  </IconButton>
+                </Link>
+              </Tooltip>
             </div>
           ) : (
             <div>
@@ -69,37 +81,6 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
               </Link>
             </div>
           )}
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Edit Profile">
-              <Link to="/users/profile">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src={userImg} />
-                </IconButton>
-              </Link>
-            </Tooltip>
-            {/* <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu> */}
-          </Box>
         </Toolbar>
       </AppBar>
     </Box>
