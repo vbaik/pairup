@@ -48,3 +48,6 @@ router.get("/partners", requireToken, async (req, res, next) => {
     next(err);
   }
 });
+
+
+//update User profile info
