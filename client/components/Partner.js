@@ -1,5 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import "chart.js/auto";
+import { Bar } from "react-chartjs-2";
+
 import { fetchAllUsersThunk, fetchPotentialPartnersThunk } from "../store/user";
 
 class Partner extends React.Component {
@@ -89,7 +92,37 @@ class Partner extends React.Component {
               <div key={partner.id}>
                 <h4>{partner.username}</h4>
                 <ul>{partner.level}</ul>
-                <ul>Compatibility {this.calculateCompatibility(partner)}</ul>
+                {/* <ul>Compatibility {this.calculateCompatibility(partner)}</ul> */}
+                <Bar
+                  data={{
+                    labels: ["Compatibility"],
+                    datasets: [
+                      {
+                        label: "Compatibility",
+                        data: [this.calculateCompatibility(partner)],
+                        backgroundColor: [
+                          "rgba(54, 162, 235, 0.2)",
+                          "rgba(255, 99, 132, 0.2)",
+                        ],
+                      },
+                    ],
+                  }}
+                  height={10}
+                  width={100}
+                  options={{
+                    indexAxis: "y",
+                    scales: {
+                      x: {
+                        max: 1,
+                        min: 0,
+                        ticks: {
+                          stepSize: 1,
+                          display: false,
+                        },
+                      },
+                    },
+                  }}
+                />
               </div>
             ))}
           </div>
