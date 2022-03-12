@@ -23,7 +23,7 @@ class Routes extends Component {
       <div>
         <Switch>
           <Route exact path="/" component={MainPage} />
-          <Route exact path="/users/:userId" component={UserProfile} />
+          <Route exact path="/users/profile" component={UserProfile} />
         </Switch>
         {isLoggedIn ? (
           <Switch>

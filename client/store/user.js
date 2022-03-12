@@ -36,7 +36,6 @@ export const fetchAllUsersThunk = () => {
             authorization: token,
           },
         });
-        console.log("data ??????? ", data);
         dispatch(getAllUsers(data));
       }
     } catch (err) {

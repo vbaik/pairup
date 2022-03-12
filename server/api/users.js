@@ -8,7 +8,6 @@ module.exports = router;
 
 router.get("/", requireToken, async (req, res, next) => {
   try {
-    console.log((token = req.headers.authorization));
     const users = await User.findAll({
       attributes: ["id", "username", "level"],
       include: Mbti,
@@ -19,26 +18,37 @@ router.get("/", requireToken, async (req, res, next) => {
   }
 });
 
-//get single user:
-router.get("/:id", async (req, res, next) => {
-  try {
-    const user = await User.findByPk(req.params.id, {
-      include: Mbti,
-    });
-    if (user === null) {
-      res.status(404);
-    }
-    res.json(user);
-  } catch (err) {
-    next(err);
-  }
-});
+// //get single user:
+// router.get("/:id", async (req, res, next) => {
+//   try {
+//     const user = await User.findByPk(req.params.id, {
+//       include: Mbti,
+//     });
+//     if (user === null) {
+//       res.status(404);
+//     }
+//     res.json(user);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+// //update User profile info
+// router.put("/:id", async (req, res, next) => {
+//   try {
+//     console.log("req.body >>>>>>", req.body);
+//     const user = await User.findByPk(req.params.id);
+//     res.json(await user.update(req.body));
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 //update User profile info
-router.put("/:id", async (req, res, next) => {
+router.put("/", requireToken, async (req, res, next) => {
   try {
     console.log("req.body >>>>>>", req.body);
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(req.user.id);
     res.json(await user.update(req.body));
   } catch (err) {
     next(err);

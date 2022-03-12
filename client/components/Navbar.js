@@ -24,7 +24,7 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
-      <Link to="/users/:userId">
+      <Link to="/users/profile">
         <img src={userImg} />
       </Link>
     </nav>

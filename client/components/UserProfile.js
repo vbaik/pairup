@@ -10,10 +10,10 @@ class UserProfile extends React.Component {
     super();
     this.state = {
       username: "",
-      password: "",
-      level: "",
-      imageURL: "",
-      aboutMe: "",
+      // password: "",
+      // level: "",
+      // imageURL: "",
+      // aboutMe: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,14 +34,14 @@ class UserProfile extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log("submitted >>>>>", this.state);
-    this.props.updateUser(this.props.match.params.id, { ...this.state });
+    this.props.updateUser({ ...this.state });
   }
 
   render() {
-    console.log(">>>>>>>", this.state);
+    console.log("this. state >>>>>>>", this.state);
     return (
       <div>
-        <form onSubmit={this.handleChange}>
+        <form onSubmit={this.handleSubmit}>
           <label>Username: </label>
           <input
             name="username"
@@ -68,7 +68,7 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  getSingleUser: (id) => dispatch(getSingleUserThunk(id)),
+  //   getSingleUser: (id) => dispatch(getSingleUserThunk(id)),
   loadInitialData() {
     dispatch(me());
   },

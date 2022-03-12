@@ -11,7 +11,6 @@ class Home extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(event) {
-    console.log("state changed");
     this.setState({
       [event.target.name]: event.target.value,
     });
