@@ -8,16 +8,14 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+// import { ThemeProvider } from "@mui/material/styles";
 
-const settings = ["Profile", "Logout"];
+// import theme from "./style/Theme";
+
+// const settings = ["Profile", "Logout"];
 
 const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -31,13 +29,18 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        sx={{ background: "none", fontFamily: "Nunito" }}
+        elevation={0}
+      >
         <Toolbar>
           <Link to="/">
             <Box
               component="img"
               sx={{
                 height: 64,
+                flexGrow: 1,
               }}
               alt="PairUp"
               src="/Logo.png"
@@ -49,20 +52,20 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
               {/* The navbar will show these links after you log in */}
 
               <Link to="/home">
-                <Button color="inherit">Find Your Partner</Button>
+                <Button>Find Your Partner</Button>
               </Link>
               <a href="#" onClick={handleClick}>
-                <Button color="inherit">Logout</Button>
+                <Button>Logout</Button>
               </a>
             </div>
           ) : (
             <div>
               {/* The navbar will show these links before you log in */}
               <Link to="/login">
-                <Button color="inherit">Login</Button>
+                <Button>Login</Button>
               </Link>
               <Link to="/signup">
-                <Button color="inherit">Sign Up</Button>
+                <Button>Sign Up</Button>
               </Link>
             </div>
           )}

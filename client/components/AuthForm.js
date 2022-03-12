@@ -18,25 +18,17 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+import theme from "./style/Theme";
+
 function Copyright(props) {
   return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
+    <Typography variant="body2" color="primary" align="center" {...props}>
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        PairUp
-      </Link>{" "}
-      {new Date().getFullYear()}
+      <Link href="https://mui.com/">PairUp</Link> {new Date().getFullYear()}
       {"."}
     </Typography>
   );
 }
-
-const theme = createTheme();
 
 /**
  * COMPONENT
@@ -59,7 +51,7 @@ const AuthForm = (props) => {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography color="secondary" component="h1" variant="h5">
             {displayName}
           </Typography>
           <Box
@@ -148,11 +140,6 @@ const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
       evt.preventDefault();
-      // const data = new FormData(evt.currentTarget);
-      // console.log({
-      //   email: data.get("email"),
-      //   password: data.get("password"),
-      // });
       const formName = evt.target.name;
       const username = evt.target.username.value;
       const password = evt.target.password.value;
