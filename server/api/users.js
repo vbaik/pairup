@@ -19,14 +19,31 @@ router.get("/", requireToken, async (req, res, next) => {
   }
 });
 
-// router.get("/:userId", requireToken, async (req, res, next) => {
-//   try {
-//     const loggedInUser = await User.findByPk(req.params.userId);
-//     res.send(loggedInUser);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+//get single user:
+router.get("/:id", async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.id, {
+      include: Mbti,
+    });
+    if (user === null) {
+      res.status(404);
+    }
+    res.json(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
+//update User profile info
+router.put("/:id", async (req, res, next) => {
+  try {
+    console.log("req.body >>>>>>", req.body);
+    const user = await User.findByPk(req.params.id);
+    res.json(await user.update(req.body));
+  } catch (err) {
+    next(err);
+  }
+});
 
 // find partners
 router.get("/partners", requireToken, async (req, res, next) => {
@@ -41,13 +58,9 @@ router.get("/partners", requireToken, async (req, res, next) => {
         mbtiId: matchedMbti.fk_bestMatch,
       },
     });
-    console.log("matched partners >>>>>>", partners);
 
     res.send(partners);
   } catch (err) {
     next(err);
   }
 });
-
-
-//update User profile info

@@ -3,13 +3,7 @@ import axios from "axios";
 // const GET_LOGGEDIN_USER = "GET_LOGGEDIN_USER";
 const GET_ALL_USERS = "GET_ALL_USERS";
 const GET_PARTNERS = "GET_PARTNERS";
-
-// const getLoggedInUser = (user) => {
-//   return {
-//     type: GET_LOGGEDIN_USER,
-//     user,
-//   };
-// };
+// const UPDATE_USER = "UPDATE_USER";
 
 const getAllUsers = (users) => {
   return {
@@ -25,14 +19,10 @@ const getPartners = (partners) => {
   };
 };
 
-// export const fetchLoggedInUserThunk = (userId) => {
-//   return async (dispatch) => {
-//     try {
-//       const { data: user } = await axios.get(`/api/user/${userId}`);
-//       dispatch(getLoggedInUser(user));
-//     } catch (err) {
-//       console.log(err);
-//     }
+// const updateUser = (user) => {
+//   return {
+//     type: UPDATE_USER,
+//     user,
 //   };
 // };
 
@@ -54,6 +44,7 @@ export const fetchAllUsersThunk = () => {
     }
   };
 };
+
 export const fetchPotentialPartnersThunk = () => {
   return async (dispatch) => {
     try {
@@ -70,6 +61,27 @@ export const fetchPotentialPartnersThunk = () => {
   };
 };
 
+// export const updateUserThunk = (user) => {
+//   return async (dispatch) => {
+//     try {
+//       const token = window.localStorage.getItem("token");
+//       console.log("redux user ---->>>", user);
+//       const { data: updatedUserData } = await axios.put(
+//         "/api/users/profile",
+//         user,
+//         {
+//           headers: {
+//             authorization: token,
+//           },
+//         }
+//       );
+//       dispatch(updateUser(updatedUserData));
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
+// };
+
 const initialState = [];
 
 export default function usersReducer(state = initialState, action) {
@@ -78,6 +90,8 @@ export default function usersReducer(state = initialState, action) {
       return action.partners;
     case GET_ALL_USERS:
       return action.users;
+    // case UPDATE_USER:
+    //   return action.user;
     default:
       return state;
   }

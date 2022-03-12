@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 
-const Navbar = ({ handleClick, isLoggedIn }) => (
+const Navbar = ({ handleClick, isLoggedIn, userImg }) => (
   <div>
     <Link to="/">
       <h1>PairUp</h1>
@@ -12,7 +12,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
+          <Link to="/home">Find Partner</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -24,6 +24,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
+      <Link to="/users/:userId">
+        <img src={userImg} />
+      </Link>
     </nav>
   </div>
 );
@@ -34,7 +37,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
-    userImg: state.auth.imageURL
+    userImg: state.auth.imageURL,
   };
 };
 
