@@ -48,8 +48,21 @@ router.get("/", requireToken, async (req, res, next) => {
 router.put("/", requireToken, async (req, res, next) => {
   try {
     console.log("req.body >>>>>>", req.body);
-    const user = await User.findByPk(req.user.id);
-    res.json(await user.update(req.body));
+    const mbti = req.body.mbti;
+    // const userMbti = await Mbti.findOne({
+    //   logging: console.log,
+    //   where: {
+    //     type: mbti,
+    //   },
+    // });
+    const userMbti = Mbti.findMbti();
+    console.log("**********", userMbti);
+    const user = await User.findByPk(req.use.id);
+    const updatedUserInfo = {
+      mbtiId: userMbti.id,
+      ...req.body,
+    };
+    res.json(await user.update(updatedUserInfo));
   } catch (err) {
     next(err);
   }

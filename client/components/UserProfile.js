@@ -23,6 +23,7 @@ class UserProfile extends React.Component {
     this.state = {
       username: props.singleUser.username || "",
       password: props.singleUser.password || "",
+      mbtiId: "",
       // level: "",
       // imageURL: "",
       // aboutMe: "",
@@ -65,6 +66,13 @@ class UserProfile extends React.Component {
             name="password"
             onChange={this.handleChange}
             value={this.state.password}
+          />
+          <p>Current MBTI: </p>
+          <label>Update MBTI: </label>
+          <input
+            name="mbtiId"
+            onChange={this.handleChange}
+            value={this.state.mbtiId}
           />
 
           <div className="submit-cancel-btn">

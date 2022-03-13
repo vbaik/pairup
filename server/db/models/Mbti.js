@@ -24,4 +24,14 @@ const Mbti = db.define("mbti", {
   },
 });
 
+Mbti.findMbti = async function () {
+  const foundMbti = await Mbti.findOne({
+    logging: console.log,
+    where: {
+      type: "ESTP",
+    },
+  });
+  return foundMbti;
+};
+
 module.exports = Mbti;

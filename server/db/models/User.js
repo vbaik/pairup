@@ -3,6 +3,7 @@ const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
+const Mbti = require("./Mbti");
 
 const SALT_ROUNDS = 5;
 
@@ -64,7 +65,9 @@ User.authenticate = async function ({ username, password }) {
 User.findByToken = async function (token) {
   try {
     const { id } = await jwt.verify(token, process.env.JWT);
-    const user = User.findByPk(id);
+    const user = User.findByPk(id, {
+      include: Mbti,
+    });
     if (!user) {
       throw "There is no such user in here.";
     }
