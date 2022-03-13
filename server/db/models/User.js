@@ -27,7 +27,8 @@ const User = db.define("user", {
   imageURL: {
     type: Sequelize.STRING,
     defaultValue:
-      "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
+      // "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
+      "https://dog.ceo/api/breeds/image/random",
   },
   aboutMe: {
     type: Sequelize.TEXT,

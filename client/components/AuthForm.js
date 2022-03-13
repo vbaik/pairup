@@ -107,21 +107,17 @@ const AuthForm = (props) => {
               id="password"
               autoComplete="current-password"
             />
-            <InputLabel id="mbti-dropdown">Update Your MBTI:</InputLabel>
+            <InputLabel id="mbti-dropdown">Your MBTI:</InputLabel>
             <Select
               labelId="mbti-dropdown"
               id="mbtiId"
               label="MBTI"
               name="mbtiId"
-              sx={{ width: "130px" }}
+              fullWidth
             >
               {mbtiArr.map((mbti, idx) => createMbtiMenu(idx, mbti))}
             </Select>
 
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
