@@ -87,3 +87,15 @@ router.get("/partners", requireToken, async (req, res, next) => {
     next(err);
   }
 });
+
+//get user statistics
+router.get("/stats", async (req, res, next) => {
+  try {
+    const users = await User.findAll({
+      attributes: ["id", "username", "level"],
+      include: Mbti,
+    });
+  } catch (err) {
+    next(err);
+  }
+});

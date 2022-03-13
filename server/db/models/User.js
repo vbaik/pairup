@@ -79,6 +79,8 @@ User.findByToken = async function (token) {
   }
 };
 
+User.calculateStats = function () {};
+
 /**
  * hooks
  */

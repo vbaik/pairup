@@ -21,7 +21,9 @@ class AllUserStat extends React.Component {
   componentDidMount() {
     this.props.getAllUsers();
   }
+
   render() {
+    console.log("this is all users>>>>", this.props.allUsers);
     return (
       <Grid container spacing={3}>
         <Grid item xs={6}>
