@@ -15,7 +15,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import { Container, InputLabel, Select, MenuItem } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import theme from "./style/Theme";
@@ -30,12 +30,38 @@ function Copyright(props) {
   );
 }
 
+const mbtiArr = [
+  "ISFJ",
+  "ESFJ",
+  "ISTJ",
+  "ISFP",
+  "ESTJ",
+  "ESFP",
+  "ENFP",
+  "ISTP",
+  "INFP",
+  "ESTP",
+  "INTP",
+  "ENTP",
+  "ENFJ",
+  "INTJ",
+  "ENTJ",
+  "INFJ",
+];
+
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
 
+  function createMbtiMenu(i, mbtiName) {
+    return (
+      <MenuItem key={i} value={i + 1}>
+        {mbtiName}
+      </MenuItem>
+    );
+  }
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -81,6 +107,17 @@ const AuthForm = (props) => {
               id="password"
               autoComplete="current-password"
             />
+            <InputLabel id="mbti-dropdown">Update Your MBTI:</InputLabel>
+            <Select
+              labelId="mbti-dropdown"
+              id="mbtiId"
+              label="MBTI"
+              name="mbtiId"
+              sx={{ width: "130px" }}
+            >
+              {mbtiArr.map((mbti, idx) => createMbtiMenu(idx, mbti))}
+            </Select>
+
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -143,7 +180,8 @@ const mapDispatch = (dispatch, { history }) => {
       const formName = evt.target.name;
       const username = evt.target.username.value;
       const password = evt.target.password.value;
-      dispatch(authenticate(username, password, formName, history));
+      const mbtiId = evt.target.mbtiId.value;
+      dispatch(authenticate(username, password, formName, mbtiId, history));
     },
   };
 };
