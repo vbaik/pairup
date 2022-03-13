@@ -101,11 +101,11 @@ router.get("/stats", async (req, res, next) => {
     const numExperts = await User.count({
       where: { level: "Experienced" },
     });
-    const coderLevelRatio = {
-      Beginner: numBeginners / totalNumUsers,
-      Intermediate: numInterms / totalNumUsers,
-      Experienced: numExperts / totalNumUsers,
-    };
+    const coderLevelRatio = [
+      { Beginner: numBeginners / totalNumUsers },
+      { Intermediate: numInterms / totalNumUsers },
+      { Experienced: numExperts / totalNumUsers },
+    ];
 
     //calculate mbti ratio
     const mbtiArr = [
@@ -134,17 +134,12 @@ router.get("/stats", async (req, res, next) => {
       let mbtiName = mbtiArr[i];
       userMbtiRatio.push({ [mbtiName]: numEachMbtiUsers / totalNumUsers });
     }
-    // const userMbtiCountObj = mbtiArr.forEach((mbti)=> {
 
-    // })
-
-    //combine both numbers as an object
-
+    //get total stat now:
     const totalStats = {
       coderLevelStats: coderLevelRatio,
       userMbtiStats: userMbtiRatio,
     };
-
     res.send(totalStats);
   } catch (err) {
     next(err);
