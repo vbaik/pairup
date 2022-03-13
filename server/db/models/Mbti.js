@@ -34,4 +34,15 @@ Mbti.findMbti = async function () {
   return foundMbti;
 };
 
+Mbti.calculateCoderLevelStats = function () {
+  Mbti.count().then((count) => {});
+};
+
+async function count() {
+  let count = await Mbti.count();
+  return count;
+}
+
+console.log(count());
+
 module.exports = Mbti;

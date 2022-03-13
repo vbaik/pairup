@@ -79,7 +79,11 @@ User.findByToken = async function (token) {
   }
 };
 
-User.calculateStats = function () {};
+User.calculateCoderLevelStats = function () {
+  User.count().then((count) => {
+    count;
+  });
+};
 
 /**
  * hooks

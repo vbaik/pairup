@@ -72,7 +72,6 @@ router.put("/", requireToken, async (req, res, next) => {
 router.get("/partners", requireToken, async (req, res, next) => {
   try {
     // console.log("req.user >>>>>>>> ", req.user.toJSON());
-
     const matchedMbti = await Mbti.findByPk(req.user.mbtiId);
 
     const partners = await User.findAll({
@@ -91,10 +90,62 @@ router.get("/partners", requireToken, async (req, res, next) => {
 //get user statistics
 router.get("/stats", async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      attributes: ["id", "username", "level"],
-      include: Mbti,
+    //calculate coder level ratio:
+    const totalNumUsers = await User.count();
+    const numBeginners = await User.count({
+      where: { level: "Beginner" },
     });
+    const numInterms = await User.count({
+      where: { level: "Intermediate" },
+    });
+    const numExperts = await User.count({
+      where: { level: "Experienced" },
+    });
+    const coderLevelRatio = {
+      Beginner: numBeginners / totalNumUsers,
+      Intermediate: numInterms / totalNumUsers,
+      Experienced: numExperts / totalNumUsers,
+    };
+
+    //calculate mbti ratio
+    const mbtiArr = [
+      "ISFJ",
+      "ESFJ",
+      "ISTJ",
+      "ISFP",
+      "ESTJ",
+      "ESFP",
+      "ENFP",
+      "ISTP",
+      "INFP",
+      "ESTP",
+      "INTP",
+      "ENTP",
+      "ENFJ",
+      "INTJ",
+      "ENTJ",
+      "INFJ",
+    ];
+    const userMbtiRatio = [];
+    for (let i = 0; i < mbtiArr.length; i++) {
+      let numEachMbtiUsers = await User.count({
+        where: { mbtiId: i + 1 },
+      });
+      let mbtiName = mbtiArr[i];
+      userMbtiRatio.push({ [mbtiName]: numEachMbtiUsers / totalNumUsers });
+    }
+    // const userMbtiCountObj = mbtiArr.forEach((mbti)=> {
+
+    // })
+
+    //combine both numbers as an object
+
+    const totalStats = {
+      coderLevelStats: coderLevelRatio,
+      userMbtiStats: userMbtiRatio,
+    };
+
+    res.send(totalStats);
   } catch (err) {
     next(err);
   }
