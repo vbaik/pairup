@@ -67,7 +67,7 @@ class AllUserStat extends React.Component {
         }}
       >
         <Grid item xs={12}>
-          <Typography variant="h5" marginBottom="40px">
+          <Typography variant="h5" marginBottom="40px" marginTop="50px">
             {" "}
             Here is the experience distribution of your peers at PairUp.{" "}
           </Typography>

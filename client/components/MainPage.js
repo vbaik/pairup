@@ -56,18 +56,21 @@ export default class MainPage extends React.Component {
           direction="column"
           alignItems="center"
         >
-          <Typography
-            variant="h3"
-            sx={{ margin: "100px" }}
-            textAlign="center"
-            lineHeight="2"
-          >
-            based on your
-            <span className="main-title-span"> coding experience </span>
-            level
-            <br /> & <br /> your{" "}
-            <span className="main-title-span"> MBTI personality </span>type.
-          </Typography>
+          {" "}
+          <Box backgroundColor="#dcf8f5">
+            <Typography
+              variant="h3"
+              sx={{ margin: "100px" }}
+              textAlign="center"
+              lineHeight="2"
+            >
+              based on your
+              <span className="main-title-span"> coding experience </span>
+              level
+              <br /> & <br /> your{" "}
+              <span className="main-title-span"> MBTI personality </span>type.
+            </Typography>
+          </Box>
           <AllUserStat />
           <Typography
             variant="h4"
@@ -88,12 +91,17 @@ export default class MainPage extends React.Component {
           <Typography
             variant="h3"
             textAlign="center"
-            lineHeight="2"
+            lineHeight="1.7"
             color="primary"
           >
             Are you ready?
           </Typography>
-          <Typography variant="h4" textAlign="center" lineHeight="2">
+          <Typography
+            variant="h4"
+            textAlign="center"
+            lineHeight="2"
+            marginBottom="100px"
+          >
             Then <Link href="/signup"> SIGN UP</Link> to find your <br />
             perfect pair-programming partner!
           </Typography>
