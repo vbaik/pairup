@@ -62,7 +62,7 @@ class AllUserStat extends React.Component {
           <PolarArea
             options={{
               animation: {
-                delay: 2000,
+                delay: 1000,
                 duration: 1500,
               },
             }}
@@ -84,7 +84,7 @@ class AllUserStat extends React.Component {
           <Doughnut
             options={{
               animation: {
-                delay: 2000,
+                delay: 1000,
                 duration: 1500,
               },
             }}
