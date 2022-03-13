@@ -6,7 +6,14 @@ import ReactDOM from "react-dom";
 import { styled } from "@mui/material/styles";
 // // import Paper from "@mui/material/Paper";
 // import Grid from "@mui/material/Grid";
-import { IconButton, Collapse, Box, Typography, Grid } from "@mui/material";
+import {
+  IconButton,
+  Collapse,
+  Box,
+  Typography,
+  Grid,
+  Link,
+} from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Link as Scroll } from "react-scroll";
 
@@ -23,7 +30,7 @@ import AllUserStat from "./AllUserStat";
 export default class MainPage extends React.Component {
   render() {
     return (
-      <Grid container spacing={3}>
+      <Grid container>
         <Grid item xs={12}>
           <Box
             style={{
@@ -39,17 +46,58 @@ export default class MainPage extends React.Component {
           >
             <Typography variant="h2">
               Find Your Perfect <br />{" "}
-              <span className="main-title-span">Pair-programming </span>Partner.
+              <span className="main-title-span">Pair-programming </span>Partner
             </Typography>
-            {/* <IconButton sx={{ alignSelf: "flex-start" }}>
-              <KeyboardArrowDownIcon
-                sx={{ color: "#fe6d73", fontSize: "6rem" }}
-              />
-            </IconButton> */}
           </Box>
         </Grid>
-
-        <AllUserStat />
+        <Grid
+          container
+          justifyContent="center"
+          direction="column"
+          alignItems="center"
+        >
+          <Typography
+            variant="h3"
+            sx={{ margin: "100px" }}
+            textAlign="center"
+            lineHeight="2"
+          >
+            based on your
+            <span className="main-title-span"> coding experience </span>
+            level
+            <br /> & <br /> your{" "}
+            <span className="main-title-span"> MBTI personality </span>type.
+          </Typography>
+          <AllUserStat />
+          <Typography
+            variant="h4"
+            sx={{ margin: "100px" }}
+            textAlign="center"
+            lineHeight="3"
+          >
+            You don't know what your MBTI type is? <br /> Don't worry! <br />{" "}
+            Take this
+            <a
+              href="https://www.16personalities.com/free-personality-test"
+              target="_blank"
+            >
+              <span className="main-title-span"> quick test </span>{" "}
+            </a>
+            and you are good to go!
+          </Typography>
+          <Typography
+            variant="h3"
+            textAlign="center"
+            lineHeight="2"
+            color="primary"
+          >
+            Are you ready?
+          </Typography>
+          <Typography variant="h4" textAlign="center" lineHeight="2">
+            Then <Link href="/signup"> SIGN UP</Link> to find your <br />
+            perfect pair-programming partner!
+          </Typography>
+        </Grid>
       </Grid>
     );
   }

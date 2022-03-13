@@ -56,13 +56,25 @@ class AllUserStat extends React.Component {
     });
 
     return (
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <Typography variant="h4"> Coding Level Distribution: </Typography>
+      <Grid
+        container
+        spacing={4}
+        // justifyContent="center"
+        // direction="column"
+        // alignItems="center"
+        sx={{
+          width: "500px",
+        }}
+      >
+        <Grid item xs={12}>
+          <Typography variant="h5" marginBottom="40px">
+            {" "}
+            Here is the experience distribution of your peers at PairUp.{" "}
+          </Typography>
           <PolarArea
             options={{
               animation: {
-                delay: 1000,
+                delay: 2000,
                 duration: 1500,
               },
             }}
@@ -79,13 +91,16 @@ class AllUserStat extends React.Component {
             }}
           />
         </Grid>
-        <Grid item xs={6}>
-          <Typography variant="h4"> MBTI Distribution: </Typography>
+        <Grid item xs={12}>
+          <Typography variant="h5" marginTop="50px" marginBottom="20px">
+            {" "}
+            You can find every type of personality at PairUp.{" "}
+          </Typography>
           <Doughnut
             options={{
               animation: {
-                delay: 1000,
-                duration: 1500,
+                delay: 3000,
+                duration: 3000,
               },
             }}
             data={{
