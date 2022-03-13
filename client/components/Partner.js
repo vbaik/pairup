@@ -3,6 +3,18 @@ import { connect } from "react-redux";
 import "chart.js/auto";
 import { Bar } from "react-chartjs-2";
 
+//+++ style +++
+import {
+  Typography,
+  Toolbar,
+  Box,
+  Menu,
+  MenuItem,
+  Button,
+  Grid,
+  Avatar,
+} from "@mui/material";
+
 import { fetchAllUsersThunk, fetchPotentialPartnersThunk } from "../store/user";
 
 class Partner extends React.Component {
@@ -86,44 +98,53 @@ class Partner extends React.Component {
     if (this.props.coderType !== "") {
       return (
         <div>
-          <h3>Your awesome matching partner(s): </h3>
+          <Typography>Your awesome matching partner(s): </Typography>
           <div>
             {potentialPartners.map((partner) => (
-              <div key={partner.id}>
-                <h4>{partner.username}</h4>
-                <ul>{partner.level}</ul>
-                {/* <ul>Compatibility {this.calculateCompatibility(partner)}</ul> */}
-                <Bar
-                  data={{
-                    labels: ["Compatibility"],
-                    datasets: [
-                      {
-                        label: "Compatibility",
-                        data: [this.calculateCompatibility(partner)],
-                        backgroundColor: [
-                          "rgba(54, 162, 235, 0.2)",
-                          "rgba(255, 99, 132, 0.2)",
+              <Box key={partner.id}>
+                <Grid container spacing={3}>
+                  <Grid item xs={1}>
+                    <Avatar alt="Remy Sharp" src={partner.imageURL} />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography color="primary">{partner.username}</Typography>
+                    <Typography>Level: {partner.level}</Typography>
+                  </Grid>
+                  {/* <ul>Compatibility {this.calculateCompatibility(partner)}</ul> */}
+                  <Grid item xs={8}>
+                    <Bar
+                      data={{
+                        labels: ["Compatibility"],
+                        datasets: [
+                          {
+                            label: "Compatibility",
+                            data: [this.calculateCompatibility(partner)],
+                            backgroundColor: [
+                              "rgba(54, 162, 235, 0.2)",
+                              "rgba(255, 99, 132, 0.2)",
+                            ],
+                          },
                         ],
-                      },
-                    ],
-                  }}
-                  height={10}
-                  width={100}
-                  options={{
-                    indexAxis: "y",
-                    scales: {
-                      x: {
-                        max: 1,
-                        min: 0,
-                        ticks: {
-                          stepSize: 1,
-                          display: false,
+                      }}
+                      height={10}
+                      width={100}
+                      options={{
+                        indexAxis: "y",
+                        scales: {
+                          x: {
+                            max: 1,
+                            min: 0,
+                            ticks: {
+                              stepSize: 1,
+                              display: false,
+                            },
+                          },
                         },
-                      },
-                    },
-                  }}
-                />
-              </div>
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
             ))}
           </div>
         </div>

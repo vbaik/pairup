@@ -12,7 +12,6 @@ import {
   Button,
 } from "@mui/material";
 
-import theme from "./style/Theme";
 
 class Home extends React.Component {
   constructor(props) {
@@ -33,18 +32,21 @@ class Home extends React.Component {
     return (
       <Box>
         <Typography color="primary" variant="h4">
-          Welcome, {username}.
+          Welcome, {username}!
         </Typography>
         <Typography variant="h6">
           Would you like to drive or navigate?
         </Typography>
+
         <select
           className="driver-dropdown"
           name="coderType"
           onChange={this.handleChange}
           value={this.state.coderType}
         >
-          <option value="">Select Here:</option>
+          <option value="" disabled>
+            Select Here:
+          </option>
           <option value="Driver">Drive</option>
           <option value="Navigator">Navigate</option>
         </select>
