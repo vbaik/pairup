@@ -64,7 +64,7 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
               </a>
               <Tooltip title="Edit Profile">
                 <Link to="/users/profile">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <IconButton onClick={handleOpenUserMenu}>
                     <Avatar alt="Remy Sharp" src={userImg} />
                   </IconButton>
                 </Link>

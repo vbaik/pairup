@@ -5,12 +5,24 @@ import { Link } from "react-router-dom";
 import { me } from "../store";
 import { updateUserThunk, getSingleUserThunk } from "../store/singleUser";
 
+//+++ style +++
+import {
+  Typography,
+  Toolbar,
+  Box,
+  Menu,
+  MenuItem,
+  Button,
+  Grid,
+  Avatar,
+} from "@mui/material";
+
 class UserProfile extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-      username: "",
-      // password: "",
+      username: props.singleUser.username || "",
+      password: props.singleUser.password || "",
       // level: "",
       // imageURL: "",
       // aboutMe: "",
@@ -48,6 +60,12 @@ class UserProfile extends React.Component {
             onChange={this.handleChange}
             value={this.state.username}
           />
+          <label>Password: </label>
+          <input
+            name="password"
+            onChange={this.handleChange}
+            value={this.state.password}
+          />
 
           <div className="submit-cancel-btn">
             <button className="btn-submit" type="submit">
@@ -63,9 +81,12 @@ class UserProfile extends React.Component {
   }
 }
 
-const mapState = (state) => ({
-  singleUser: state.singleUser,
-});
+const mapState = (state) => {
+  console.log("mapState state >>>> ", state);
+  return {
+    singleUser: state.singleUser,
+  };
+};
 
 const mapDispatch = (dispatch) => ({
   //   getSingleUser: (id) => dispatch(getSingleUserThunk(id)),

@@ -119,14 +119,11 @@ class Partner extends React.Component {
                           {
                             label: "Compatibility",
                             data: [this.calculateCompatibility(partner)],
-                            backgroundColor: [
-                              "rgba(54, 162, 235, 0.2)",
-                              "rgba(255, 99, 132, 0.2)",
-                            ],
+                            backgroundColor: ["rgba(56,174,211, 0.3)"],
                           },
                         ],
                       }}
-                      height={10}
+                      height={20}
                       width={100}
                       options={{
                         indexAxis: "y",
