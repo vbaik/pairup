@@ -10,8 +10,8 @@ import {
   Menu,
   MenuItem,
   Button,
+  Select,
 } from "@mui/material";
-
 
 class Home extends React.Component {
   constructor(props) {
@@ -31,25 +31,33 @@ class Home extends React.Component {
     const { username } = this.props;
     return (
       <Box>
-        <Typography color="primary" variant="h4">
-          Welcome, {username}!
-        </Typography>
-        <Typography variant="h6">
-          Would you like to drive or navigate?
-        </Typography>
-
-        <select
-          className="driver-dropdown"
-          name="coderType"
-          onChange={this.handleChange}
-          value={this.state.coderType}
+        <Box
+          display="flex"
+          justifyContent="center"
+          direction="column"
+          alignItems="center"
+          flexDirection="column"
         >
-          <option value="" disabled>
-            Select Here:
-          </option>
-          <option value="Driver">Drive</option>
-          <option value="Navigator">Navigate</option>
-        </select>
+          <Typography color="primary" variant="h4" lineHeight="3">
+            Welcome, {username}!
+          </Typography>
+          <Typography variant="h6" marginBottom="30px">
+            Would you like to drive or navigate?
+          </Typography>
+
+          <Select
+            name="coderType"
+            onChange={this.handleChange}
+            value={this.state.coderType}
+            sx={{ width: "150px", height: "35px" }}
+          >
+            <MenuItem disabled value="">
+              Select Here:
+            </MenuItem>
+            <MenuItem value="Driver">Drive</MenuItem>
+            <MenuItem value="Navigator">Navigate</MenuItem>
+          </Select>
+        </Box>
 
         <div>
           <Partner coderType={this.state.coderType} />

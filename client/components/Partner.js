@@ -98,13 +98,20 @@ class Partner extends React.Component {
     if (this.props.coderType !== "") {
       return (
         <div>
-          <Typography>Your awesome matching partner(s): </Typography>
+          <Typography variant="h6" lineHeight="4">
+            Your <span className="main-title-span"> awesome</span> matching
+            partner(s):{" "}
+          </Typography>
           <div>
             {potentialPartners.map((partner) => (
               <Box key={partner.id}>
                 <Grid container spacing={3}>
                   <Grid item xs={1}>
-                    <Avatar alt="Remy Sharp" src={partner.imageURL} />
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={partner.imageURL}
+                      sx={{ width: 60, height: 60 }}
+                    />
                   </Grid>
                   <Grid item xs={3}>
                     <Typography color="primary">{partner.username}</Typography>
