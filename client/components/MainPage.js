@@ -44,7 +44,7 @@ export default class MainPage extends React.Component {
               fontFamily: "Nunito",
             }}
           >
-            <Typography variant="h2">
+            <Typography variant="h2" sx={{ letterSpacing: 6, m: 1 }}>
               Find Your Perfect <br />{" "}
               <span className="main-title-span">Pair-programming </span>Partner
             </Typography>

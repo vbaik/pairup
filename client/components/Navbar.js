@@ -10,7 +10,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
+import { Tooltip, Typography } from "@mui/material";
 // import { ThemeProvider } from "@mui/material/styles";
 
 // import theme from "./style/Theme";
@@ -51,6 +51,15 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
               src="/Logo.png"
             />
           </Link>
+          <Link to="/">
+            <Typography
+              color="primary"
+              variant="h5"
+              sx={{ letterSpacing: 5, m: 1, fontWeight: "bold" }}
+            >
+              Pair<span className="main-title-span">Up</span>
+            </Typography>
+          </Link>
 
           {isLoggedIn ? (
             <div>
@@ -65,7 +74,11 @@ const Navbar = ({ handleClick, isLoggedIn, userImg }) => {
               <Tooltip title="Edit Profile">
                 <Link to="/users/profile">
                   <IconButton onClick={handleOpenUserMenu}>
-                    <Avatar alt="Remy Sharp" src={userImg} />
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={userImg}
+                      sx={{ width: 60, height: 60 }}
+                    />
                   </IconButton>
                 </Link>
               </Tooltip>

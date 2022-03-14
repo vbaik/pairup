@@ -106,19 +106,19 @@ class Partner extends React.Component {
             {potentialPartners.map((partner) => (
               <Box key={partner.id}>
                 <Grid container spacing={3}>
-                  <Grid item xs={1}>
+                  <Grid item xs={1} alignSelf="center" marginLeft="20px">
                     <Avatar
                       alt="Remy Sharp"
                       src={partner.imageURL}
                       sx={{ width: 60, height: 60 }}
                     />
                   </Grid>
-                  <Grid item xs={3}>
+                  <Grid item xs={3} alignSelf="center">
                     <Typography color="primary">{partner.username}</Typography>
                     <Typography>Level: {partner.level}</Typography>
                   </Grid>
                   {/* <ul>Compatibility {this.calculateCompatibility(partner)}</ul> */}
-                  <Grid item xs={8}>
+                  <Grid item xs={6}>
                     <Bar
                       data={{
                         labels: ["Compatibility"],
@@ -146,6 +146,9 @@ class Partner extends React.Component {
                         },
                       }}
                     />
+                  </Grid>
+                  <Grid item xs={1} alignSelf="center">
+                    <Button variant="outlined">Pair</Button>
                   </Grid>
                 </Grid>
               </Box>
